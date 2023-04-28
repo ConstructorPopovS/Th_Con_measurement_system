@@ -11,10 +11,20 @@ import time #for creating timer during experiment
 CURSOR_BACK_2 = '\x1b[2D'
 ERASE_TO_END_OF_LINE = '\x1b[0K'
 
+# ///////////////////////////////////////////////////////
+# CONSTANTS TO BE SET BY USER////////BEGINE//////////////
+
+DELAY_BETWEEN_READS = 0.1  # Seconds (0.01 - whatever, 10?)
+NUMBER_OF_READINGS = 120
+
+# CONSTANTS TO BE SET BY USER//////////END///////////////
+# ///////////////////////////////////////////////////////
+
+
 
 def main():
     tc_type = TcTypes.TYPE_K   # change this to the desired thermocouple type
-    delay_between_reads = 0.1  # Seconds
+    
     channels = (0, 1, 2, 3)
     
 
@@ -47,7 +57,7 @@ def main():
         samples_per_channel = 0
         startTime = float(0.0)
         
-        while (samples_per_channel <= 100):
+        while (samples_per_channel <= NUMBER_OF_READINGS):
             dataRow = []
             dataRow.append(samples_per_channel)
             # Display the updated samples per channel count
@@ -85,7 +95,7 @@ def main():
             samples_per_channel += 1
             # stdout.flush()
             # Wait the specified interval between reads.
-            sleep(delay_between_reads)
+            sleep(DELAY_BETWEEN_READS)
         print('\n')
         dataFile.close()
         
