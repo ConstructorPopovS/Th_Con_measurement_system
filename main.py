@@ -35,11 +35,11 @@ def main():
         
         # Display the header row for the data table.
         dataHeader = "   Sample,   "
-        dataHeader += " Time,      "
+        dataHeader += " Time,  "
         # print('\n  Sample', end='')
         for channel in channels:
             # print('     Channel', channel, end='')
-            dataHeader += " Channel" + str(channel) + ","
+            dataHeader += "     Channel" + str(channel) + ","
             
         print(dataHeader)
         dataFile.write(dataHeader + '\n')
