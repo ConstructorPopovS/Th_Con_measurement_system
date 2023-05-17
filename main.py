@@ -4,7 +4,7 @@ from time import sleep
 from sys import stdout
 from daqhats import mcc134, HatIDs, HatError, TcTypes
 from MCC134.daqhats_utils import select_hat_device, tc_type_to_string
-import csv #for saving data in fil in csv format
+import csv #for saving data in file in csv format
 import time #for creating timer during experiment
 
 # Constants
@@ -14,8 +14,9 @@ ERASE_TO_END_OF_LINE = '\x1b[0K'
 # ///////////////////////////////////////////////////////
 # CONSTANTS TO BE SET BY USER////////BEGINE//////////////
 
-DELAY_BETWEEN_READS = 0.1  # Seconds (0.01 - whatever, 10?)
-NUMBER_OF_READINGS = 120
+DELAY_BETWEEN_READS = 1  # Seconds (0.01 - whatever, 10?)
+NUMBER_OF_READINGS = 240
+NAME_OF_FILE_TO_SAVE_THE_DATA = 'StainSt_3.5_TermCond_1.csv'
 
 # CONSTANTS TO BE SET BY USER//////////END///////////////
 # ///////////////////////////////////////////////////////
@@ -29,7 +30,7 @@ def main():
     
 
     # open the file in the write mode
-    dataFile = open('file_From_Python.txt', 'w')
+    dataFile = open(NAME_OF_FILE_TO_SAVE_THE_DATA, 'w')
 
     # create the csv writer
     writer = csv.writer(dataFile)
@@ -78,7 +79,7 @@ def main():
 
                 # dataRow.append(value)
                 if value == mcc134.OPEN_TC_VALUE:
-                    print('   Open    ', end='')
+                    print('       Open    ', end='')
                     dataRow.append('Open')
                 elif value == mcc134.OVERRANGE_TC_VALUE:
                     print(' OverRange ', end='')
